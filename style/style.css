@@ -1,3 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Coming+Soon&family=Montserrat&family=Montserrat+Alternates&family=Open+Sans&family=Poppins&family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&family=Pacifico&display=swap');
+
+/* font-family: 'Bebas Neue', sans-serif;
+font-family: 'Coming Soon', cursive;
+font-family: 'Montserrat', sans-serif;
+font-family: 'Montserrat Alternates', sans-serif;
+font-family: 'Open Sans', sans-serif;
+font-family: 'Poppins', sans-serif;
+font-family: 'Roboto', sans-serif;
+font-family: "Orbitron", sans-serif;
+*/
+
+
 * {
     margin: 0;
     padding: 0;
@@ -14,17 +28,19 @@
     --bg: #090909;
     --primary: #ce4640;
     --text: #fff;
-    --red: #e80b06;   
+    --red: #e80b06;
 }
 
-html, body {
+html,
+body {
     width: 100%;
     background-color: var(--bg);
 }
 
-::-webkit-scrollbar {
+:-webkit-scrollbar {
     width: 0;
 }
+
 
 .section {
     width: 100%;
@@ -38,7 +54,10 @@ html, body {
     top: 0;
     left: 0;
     width: 100%;
+    height: 100%; /* Ensure video covers the section */
+    object-fit: cover; /* Cover the entire area without distortion */
 }
+
 .container {
     width: 100%;
     height: 100vh;
@@ -53,7 +72,155 @@ html, body {
 }
 
 
-#about-sub {
-    color: var(--red);
-    font-family: round8;
+#about {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+#lamba {
+    color: var(--primary);
+    font-family: 'Montserrat', sans-serif;
+    width: 65rem;
+    text-align: center;
+
+}
+
+
+/* --- Timeline Container --- */
+.timeline-container {
+    position: relative;
+    width: 90%;
+    max-width: 1000px;
+    margin: 50px auto;
+    padding: 50px 0;
+}
+
+/* --- The Center Line --- */
+.timeline-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 100%;
+    background-color: var(--primary);
+    z-index: 1;
+}
+
+/* --- Timeline Event Structure --- */
+.timeline-event {
+    padding: 10px 40px;
+    position: relative;
+    width: 50%;
+    box-sizing: border-box;
+
+}
+
+/* Position events on opposite sides */
+.timeline-event:nth-child(odd) {
+    left: 0;
+    padding-right: 70px;
+    /* Space from the center line */
+    text-align: right;
+}
+
+.timeline-event:nth-child(even) {
+    left: 50%;
+    padding-left: 70px;
+    /* Space from the center line */
+    text-align: left;
+}
+
+/* --- The Circle on the Timeline --- */
+.timeline-event::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    right: -12px;
+    background-color: var(--primary); /* Changed to primary color for fill */
+    border: 3px solid var(--text); /* Added a border to make it look like a double circle */
+    top: 50%;
+    transform: translateY(-50%);
+    border-radius: 50%;
+    z-index: 2;
+}
+
+.timeline-event:nth-child(even)::after {
+    left: -12px;
+}
+
+/* --- Content Card --- */
+.timeline-content {
+    padding: 20px 30px;
+    background-color: var(--bg);
+    position: relative;
+    border-radius: 8px;
+    /* Added a subtle shadow for depth */
+
+
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover effect on content cards */
+.timeline-content:hover {
+    transform: translateY(-5px);
+
+}
+
+
+.timeline-content h3 {
+    margin-top: 0;
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: var(--primary);
+    font-family: "Poppins", sans-serif;
+}
+
+.timeline-content h2 {
+    margin: 5px 0;
+    font-size: 1.75rem;
+    color: #fff;
+    font-family: 'Roboto', sans-serif;
+}
+
+.timeline-content img {
+    margin: 10px 0 0;
+    width: 15rem;
+    max-width: 100%; /* Ensure images are responsive */
+    height: auto;
+    display: block; /* Removes extra space below image */
+}
+
+/* --- Responsive Design --- */
+@media screen and (max-width: 768px) {
+
+    /* Move timeline to one side */
+    .timeline-container::before {
+        left: 30px;
+    }
+
+    .timeline-event {
+        width: 100%;
+        padding-left: 70px;
+        padding-right: 20px;
+    }
+
+    .timeline-event:nth-child(odd),
+    .timeline-event:nth-child(even) {
+        left: 0;
+        text-align: left;
+    }
+
+    .timeline-event::after {
+        left: 18px;
+        /* Adjust dot position */
+    }
+
+    .timeline-event:nth-child(odd) {
+        padding-right: 20px;
+    }
 }
